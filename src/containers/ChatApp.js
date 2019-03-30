@@ -1,6 +1,10 @@
 import React, {Component} from 'react'
+import Pusher from 'pusher-js'; 
+import {connect} from 'react-redux'
 
 class ChatApp extends Component{
+    
+
     render(){
         return (
             <div className="container-root-chat">
@@ -10,4 +14,10 @@ class ChatApp extends Component{
     }
 }
 
-export default ChatApp; 
+const mapToProps = (state)=>{
+    return{
+        email: state.user.email,
+    }
+}
+
+export default connect(mapToProps)(ChatApp); 

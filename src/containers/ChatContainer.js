@@ -4,16 +4,24 @@ import {connect} from 'react-redux'
 import axios from 'axios'
 import '../apis/connectApi'
 import Axios from "axios";
+import Pusher from 'pusher-js'
 
 
 class ChatContainer extends Component {
     constructor(props){
         super(props); 
+        this.getMessages = this.getMessages.bind(this)
+        this.state={
+            'header_active':null, 
+        }
     }
 
     onClickHeader = (evt)=>{
         evt.preventDefault(); 
         let id_header = (evt.target.getAttribute('data-id')); 
+        this.setState({
+            'header_active':id_header, 
+        })
         console.log(evt.target)
         let token = this.props.token;
         this.props.dispatch({
@@ -22,7 +30,34 @@ class ChatContainer extends Component {
         })
         this.getMessages(token, id_header)
     }
-    getMessages(token,header){
+    componentDidMount = () => {
+        Pusher.logToConsole = true;
+        var pusher = new Pusher('afd3371eb6832adcdd07', {
+        cluster: 'us2',
+        forceTLS: true
+        });
+
+        console.log(this.props.email)
+        let {token,email} = this.props; 
+        let channel = pusher.subscribe(email);
+        
+        channel.bind('my-event', async (data) => {
+            let headerActive = this.props.chatActive; 
+            console.log(data.id_header, headerActive)
+            if(data.type==='NEW_MESSAGE'){
+                if(data.id_header === headerActive){
+                    this.getMessages(token,data.id_header);
+                }else{
+                    alert('Tienes un nuevo mensaje de: ' + data.name); 
+                }
+                this.getHeaders(token);
+            }else if(data.type ==='NEW_HEADER'){
+                await this.getHeaders(this.props.token)
+            }
+
+        });
+    }
+    getMessages = (token,header)=>{
         let form = new FormData(); 
         form.append('token',token); 
         form.append('id_header',header); 
@@ -57,7 +92,7 @@ class ChatContainer extends Component {
             }
         })
     }
-
+      
     render = () => {
         console.log(this.props.headers); 
         return(
@@ -80,9 +115,12 @@ class ChatContainer extends Component {
 }
 
 const mapToProps = (state)=>{
+    console.info('Este es chatContainer',state.headers); 
     return{
         'token': state.user.token, 
+        'email': state.user.email, 
         'headers': state.headers, 
+        'chatActive': parseInt(state.chatActive),
     }
 }
 

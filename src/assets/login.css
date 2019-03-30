@@ -1,5 +1,51 @@
 .login-box{
     background-color: white; 
-    padding: 20px; 
+    height: 450px; 
     box-shadow: 0px 0px 10px 3px rgba(51, 51, 51, 0.753); 
+    padding: 10px; 
+    display: grid; 
+    grid-template-rows:70px 1.3fr .7fr; 
+    grid-template-areas: "header""form""other"
+}
+
+.header-login{
+    grid-area: header; 
+    color: rgb(58, 57, 57); 
+}
+.email-input label{
+}
+
+.email-input, .password-input, .name-input, .submit-button{
+    padding: 10px; 
+}
+.form-login{
+    grid-area: form; 
+}
+.form-login input{
+    border-radius: 0px; 
+    border:none; 
+    transition: .1s all; 
+    border-bottom: 2px solid rgb(204, 62, 62); 
+}
+.submit-button input:hover{
+    background-color: rgb(204, 62, 62);
+    color: white; 
+}
+
+.submit-button input{
+    border: 2px solid rgb(204, 62, 62); 
+    padding: 5px; 
+    float: right;
+    box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.376); 
+}
+
+.info{
+    grid-area: other; 
+    display: grid; 
+    background: rgb(204, 62, 62);
+    color: white; 
+    align-items: center; 
+    justify-items: center; 
+    text-align: center; 
+
 }

@@ -8,13 +8,16 @@ import reducer from './reducers/reducer'
 import {createStore} from 'redux'; 
 import {Provider} from 'react-redux'; 
 
-const initialState = {
-    isLogged: false, 
+
+
+
+let initialState = {
+    login: true, 
 }
 
 const store = createStore(
     reducer, 
-    initialState,
+    {},
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
     

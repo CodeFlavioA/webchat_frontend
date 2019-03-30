@@ -5,16 +5,19 @@ import Message from '../components/Message'
 import FormMessage from '../components/InputMessageComponent'
 import { connect } from 'react-redux';
 import Axios from 'axios';
+import ReactDOM from 'react-dom'
 
 
 class MessageSide extends Component{
     constructor(props){
         super(props); 
+        this.refDivChat = createRef()
         this.newMessage = createRef(); 
         this.state = {
             chatName: ''
         }
     }
+    
 
     sendMessage = (id_header, message,token)=>{
         let form = new FormData(); 
@@ -56,19 +59,19 @@ class MessageSide extends Component{
         for(let i = 0; i < this.props.headers.length; i++){
             let item = this.props.headers[i];   
             if(parseInt(item.id_header,10) === parseInt(this.props.chatActive,10)){
-                console.log(i,item.name)
                 name = item.name; 
                 break; 
             }
         }
+     
         
         return(
-            <div className="container-chat-conversacion">
+            <div  className="container-chat-conversacion">
                 <Header
                 name={name}
                 state='Everything is OK'
                 />
-                <div className="container-messages">
+                <div ref={this.refDivChat} className="container-messages">
                    {Messages}
                 </div>
                 <FormMessage newMessageRef={this.newMessage} onSend={this.sendHandleButton.bind(this)}/>

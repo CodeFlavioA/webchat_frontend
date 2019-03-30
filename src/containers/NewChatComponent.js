@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import HeaderMessage from '../components/HeaderMessage';
 import {connect} from 'react-redux'
+import Axios from 'axios';
 
 class NewChatComponent extends Component{
     constructor(props){
@@ -23,13 +24,24 @@ class NewChatComponent extends Component{
     sendNewChat = (token, id)=>{
         let Form = new FormData(); 
         Form.append('token',token); 
+        Form.append('idUserToTalk',id); 
+        Axios.post('http://localhost:8000/api/chat/create/',Form)
+        .then(r=>r).then(json=>{
+            console.log(json.data.data); 
+            this.props.dispatch({
+                type:'ADD_NEW_HEADER',
+                payload:json.data.data
+            })
+        });
     }
 
     newHeaderChat = (e)=>{
         e.preventDefault(); 
         let id_user = (e.target.getAttribute('data-id')); 
         if(id_user !== null){
-            console.log(id_user)
+            this.props.dispatch({
+                type:'LIST_USERS_ACTIVE'
+            })
             this.sendNewChat(this.props.token,id_user); 
         }
         

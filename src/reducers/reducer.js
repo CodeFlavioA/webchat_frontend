@@ -1,5 +1,6 @@
+
+
 function reducer (state,action){
-    
     switch (action.type) {
         case 'USR_LOGGED':{
         const {isLogged , user} = action.payload
@@ -11,6 +12,12 @@ function reducer (state,action){
                 chatActive: 0,
                 isLogged: isLogged,
                 user: user
+            }
+        }
+        case 'TOGGLE_LOGIN':{
+            return{
+                ...state, 
+                login: !state.login
             }
         }
         case 'ADD_HEADERS_MESSAGE':{
@@ -47,6 +54,12 @@ function reducer (state,action){
             return{
                 ...state, 
                 listusers_active: !state.listusers_active, 
+            }
+        }
+        case 'ADD_NEW_HEADER':{
+            return{
+                ...state,
+                headers: [...state.headers,action.payload],
             }
         }
         default:
