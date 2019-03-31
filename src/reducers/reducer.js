@@ -14,6 +14,16 @@ function reducer (state,action){
                 user: user
             }
         }
+        case 'AVATAR_UPDATE':{
+            let user = {
+                ...state.user, 
+                avatar: action.payload
+            } 
+            return{
+                ...state, 
+                user,
+            }
+        }
         case 'TOGGLE_LOGIN':{
             return{
                 ...state, 
@@ -60,6 +70,7 @@ function reducer (state,action){
             return{
                 ...state,
                 headers: [...state.headers,action.payload],
+                chatActive: action.payload.id_header, 
             }
         }
         default:

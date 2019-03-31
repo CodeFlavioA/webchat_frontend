@@ -5,7 +5,6 @@ import Message from '../components/Message'
 import FormMessage from '../components/InputMessageComponent'
 import { connect } from 'react-redux';
 import Axios from 'axios';
-import ReactDOM from 'react-dom'
 
 
 class MessageSide extends Component{
@@ -51,7 +50,7 @@ class MessageSide extends Component{
                     key = {i.id}
                     message={i.message}
                     own = {i.own}
-                    urlImage='https://lorempixel.com/40/40'
+                    urlImage={i.avatar}
                 />
             )
         }
@@ -64,17 +63,27 @@ class MessageSide extends Component{
             }
         }
      
-        
+        const selectChat = (
+            <div className="empty_chat">
+                <div className="text">
+                    Choose a conversaction or start one
+                </div>
+            </div>
+        )
         return(
             <div  className="container-chat-conversacion">
                 <Header
                 name={name}
-                state='Everything is OK'
+                users={this.props.users}
                 />
                 <div ref={this.refDivChat} className="container-messages">
-                   {Messages}
+                   {this.props.chatActive === 0 ? selectChat:Messages}
                 </div>
-                <FormMessage newMessageRef={this.newMessage} onSend={this.sendHandleButton.bind(this)}/>
+                <FormMessage 
+                newMessageRef={this.newMessage} 
+                onSend={this.sendHandleButton.bind(this)}
+                typing= {this.props.chatActive === 0}
+                />
             </div>
         );
     }
@@ -86,6 +95,7 @@ const mapToProps = (store)=>{
         chatActive: store.chatActive, 
         conversation: store.conversation, 
         token: store.user.token, 
+        users: store.nameUsers, 
     }
 }
 

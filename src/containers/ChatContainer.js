@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import HeaderMessage from '../components/HeaderMessage'
 import {connect} from 'react-redux'
-import axios from 'axios'
 import '../apis/connectApi'
 import Axios from "axios";
 import Pusher from 'pusher-js'
@@ -13,6 +12,7 @@ class ChatContainer extends Component {
         this.getMessages = this.getMessages.bind(this)
         this.state={
             'header_active':null, 
+            'query':'',
         }
     }
 
@@ -37,7 +37,7 @@ class ChatContainer extends Component {
         forceTLS: true
         });
 
-        console.log(this.props.email)
+       
         let {token,email} = this.props; 
         let channel = pusher.subscribe(email);
         
@@ -79,7 +79,7 @@ class ChatContainer extends Component {
         let form = new FormData(); 
         form.append('token', token); 
     
-        let data = await Axios.post('http://localhost:8000/api/chat/headers/', form)
+        Axios.post('http://localhost:8000/api/chat/headers/', form)
         .then((response)=>{
             return response; 
         }).then((json)=>{
@@ -92,30 +92,52 @@ class ChatContainer extends Component {
             }
         })
     }
+    filter(val){
+        return this.props.headers.filter((item)=>{
+            if(item.name.toLowerCase().includes(val.toLowerCase())){
+                return true; 
+            }
+            return false; 
+        })
+    }
+
+    queryChar = (evt) => {
+        let string = evt.target.value; 
+        this.setState({
+            query: string, 
+        })
+    }
       
     render = () => {
-        console.log(this.props.headers); 
         return(
-            <div className="list-chat">
-                {this.props.headers.map(item=>{
-                    return(
-                        <HeaderMessage 
-                        key={item.id_header} 
-                        name={item.name} 
-                        id_header={item.id_header} 
-                        message={item.last_message}
-                        click={this.onClickHeader.bind(this)}
-                            urlImage='https://lorempixel.com/40/40'
-                        />
-                    )
-                })}
+            <div className="div-users-and-input">
+                <div className="search-user-component">
+                    <input type="text" 
+                    // ref={props.refInput} 
+                    placeholder='Search chats'name="" 
+                    onChange={this.queryChar} id="input-search-user"
+                    />
+                </div>
+                <div className="list-chat">
+                    {this.filter(this.state.query).map(item=>{
+                        return(
+                            <HeaderMessage 
+                            key={item.id_header} 
+                            name={item.name} 
+                            id_header={item.id_header} 
+                            message={item.last_message}
+                            click={this.onClickHeader.bind(this)}
+                            urlImage={item.avatar}
+                            />
+                        )
+                    })}
+                </div>
             </div>
         )
     }
 }
 
 const mapToProps = (state)=>{
-    console.info('Este es chatContainer',state.headers); 
     return{
         'token': state.user.token, 
         'email': state.user.email, 

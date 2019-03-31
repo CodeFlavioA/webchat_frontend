@@ -4,7 +4,6 @@ import FloatingButton from '../components/FloatingButton'
 import BoxUsers from './NewChatComponent'
 import {connect} from 'react-redux'
 import Axios from 'axios'; 
-import { ECONNABORTED } from 'constants';
 
 class ProfileContainer extends React.Component{
     clickToButton = (evt) => {
@@ -22,9 +21,8 @@ class ProfileContainer extends React.Component{
         let form = new FormData();
         form.append('token',token); 
         form.append('userLike',query); 
-        Axios.post('http://localhost:8000/api/search/users' + '?token=' + this.props.token)
+        Axios.post('http://localhost:8000/api/search/users',form)
         .then(response=>response).then((json)=>{
-            console.log(json.data.data); 
             this.props.dispatch(
                 {type: 'NEW_LIST_USERS',payload:json.data.data}
             )
@@ -41,7 +39,10 @@ class ProfileContainer extends React.Component{
 
             Axios.post('http://localhost:8000/api/user/profile/image',Form).then(r=>r)
             .then(json=>{
-                console.log(json); 
+                this.props.dispatch({
+                    type:'AVATAR_UPDATE',
+                    payload: json.data.data,
+                })
             })
         }
     }

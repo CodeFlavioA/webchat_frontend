@@ -49,7 +49,6 @@ const LoginComponent = (props)=>{
         </form>
     );
 
-    console.log(props.toggle)
     return(
         <div className="login-box">
             <div className="header-login">

@@ -11,10 +11,6 @@ import {Provider} from 'react-redux';
 
 
 
-let initialState = {
-    login: true, 
-}
-
 const store = createStore(
     reducer, 
     {},

@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import Pusher from 'pusher-js'; 
 import {connect} from 'react-redux'
 
 class ChatApp extends Component{
