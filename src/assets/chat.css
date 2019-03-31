@@ -50,6 +50,7 @@ body{
 .header-userlist img{
     grid-area: image; 
     height: 55px;
+    width: 55px; 
     border-radius: 100%; 
     padding: 10px; 
     display: inline; 
@@ -206,14 +207,53 @@ body{
     grid-template-areas: "image""textinfo""listUsers""buttonPlus";
 }
 
+.profile-container-side  input[type=file]{ 
+    width: 40px; 
+    background-color: red; 
+    border-radius: 100%; 
+    height: 40px;
+    display: none; 
+    color:transparent;
+    
+}
+/* .input-profile-file::after{
+    content: ''; 
+    position: absolute; 
+    width: 80px; 
+    right: 0px;
+    height: 40px;
+    background: red; 
+} */
+.input-profile-file label:hover{
+    height: 50px;
+    width: 50px; 
+    padding: 12px 17px; 
+
+}
+.input-profile-file label{
+    transition: .1s all; 
+    padding: 10px 15px; 
+    border-radius: 100%; 
+    height: 40px;
+    width: 40px; 
+    color: white; 
+    background-color: rgb(9, 65, 4); 
+}
+.input-profile-file{
+    position: absolute;
+    bottom: 10px; 
+    left: 20px ;
+}
 .big-img-profile{
-   grid-area: image; 
+    grid-area: image; 
+    position: relative; 
    justify-self: center; 
    display: flex;
 }
 
 .big-img-profile img{
     height: 150px;
+    width: 150px;
     border: 4px solid rgb(43, 95, 99); 
     border-radius: 100%; 
     margin: 0px auto;
