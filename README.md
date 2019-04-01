@@ -13,6 +13,7 @@ Chat Web is a realtime web chat application where you can:
 Previous requirements
 * php7.2
 * curl-php
+* npm 
 
 ## Quick Start 
 For using the demo application you can go to [DEMO](http://flavioaandres.com/webchat)
@@ -61,6 +62,7 @@ When the process has been end, change in apis/host.js  file the API HOST where t
 
 Now, run this command for start development server and run frontend 
     npm start
+
 
 ## Ussage
 ### Create a new Chat:  
