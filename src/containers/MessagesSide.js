@@ -5,6 +5,7 @@ import Message from '../components/Message'
 import FormMessage from '../components/InputMessageComponent'
 import { connect } from 'react-redux';
 import Axios from 'axios';
+import HOST from '../apis/host'
 
 
 class MessageSide extends Component{
@@ -24,7 +25,7 @@ class MessageSide extends Component{
         form.append('idChatHeader',id_header)
         form.append('plainMessage',message)
 
-        Axios.post('http://localhost:8000/api/chat/message/send/',form).then(result=>result)
+        Axios.post(HOST + '/api/chat/message/send/',form).then(result=>result)
         .then((json)=>{
             if(json.data.success){
                 this.props.dispatch({
@@ -54,10 +55,15 @@ class MessageSide extends Component{
                 />
             )
         }
-        let name; 
+        let name,group,members; 
+        group = false; 
         for(let i = 0; i < this.props.headers.length; i++){
             let item = this.props.headers[i];   
             if(parseInt(item.id_header,10) === parseInt(this.props.chatActive,10)){
+                if(item.group){
+                    group = true; 
+                    members = item.recipents; 
+                }
                 name = item.name; 
                 break; 
             }
@@ -75,6 +81,8 @@ class MessageSide extends Component{
                 <Header
                 name={name}
                 users={this.props.users}
+                members = {members} 
+                group = {group}
                 />
                 <div ref={this.refDivChat} className="container-messages">
                    {this.props.chatActive === 0 ? selectChat:Messages}

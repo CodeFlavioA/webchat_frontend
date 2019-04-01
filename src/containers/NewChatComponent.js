@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import HeaderMessage from '../components/HeaderMessage';
 import {connect} from 'react-redux'
 import Axios from 'axios';
+import HOST from '../apis/host'
 
 class NewChatComponent extends Component{
     constructor(props){
@@ -29,7 +30,7 @@ class NewChatComponent extends Component{
         let Form = new FormData(); 
         Form.append('token',token); 
         Form.append('idUserToTalk',id); 
-        Axios.post('http://localhost:8000/api/chat/create/',Form)
+        Axios.post(HOST + '/api/chat/create/',Form)
         .then(r=>r).then(json=>{
             this.props.dispatch({
                 type:'ADD_NEW_HEADER',
@@ -50,7 +51,7 @@ class NewChatComponent extends Component{
         }
         if(id_user !== null){
             this.props.dispatch({
-                type:'LIST_USERS_ACTIVE'
+            type:'LIST_USERS_ACTIVE'
             })
             this.sendNewChat(this.props.token,id_user); 
         }
@@ -66,10 +67,25 @@ class NewChatComponent extends Component{
         }
     }
 
+    creatingGroup = ($users)=>{
+        let form = new FormData(); 
+        form.append('token',this.props.token); 
+        form.append('users',$users); 
+        Axios.post(HOST + '/api/chat/headers/group',form).then(r=>r)
+        .then(json=>{
+            console.log(json.data.data);
+            this.props.dispatch({
+                type:'ADD_NEW_HEADER',
+                payload:json.data.data
+            })
+        })
+    }
+
     render(){
         const closeBox = (evt)=>{
             if(this.state.creatingChat){
                 alert('Se agregaran estas personas a tu grupo: ' + this.state.vectorGroup)
+                this.creatingGroup(this.state.vectorGroup);
             }
             this.props.dispatch({
                 type:'LIST_USERS_ACTIVE'

@@ -146,7 +146,7 @@ body{
 .header-text h4{
     font-size: 22px; 
 }
-.header-message-side h4,p{
+.header-message-side h4,p,h5{
     margin:0px; 
 }
 .container-messages{
