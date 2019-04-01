@@ -33,19 +33,10 @@ composer install
 
 Now, config your .env file with your database connection settings 
 
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=name_database
-DB_USERNAME=user_db
-DB_PASSWORD=password_db
-
 Too, for the realtime notifications is necesary create a project on Pusher (http://linktopusher.com)
 When u have  a Pusher account, type to .env file: 
 
-PUSHER_APP_ID=
-PUSHER_APP_KEY=
-PUSHER_APP_SECRET=
+PUSHER_APP_ID | PUSHER_APP_KEY | PUSHER_APP_SECRET
 
 now, run the migrations for create the tables on database with
 ```
