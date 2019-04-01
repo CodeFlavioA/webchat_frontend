@@ -1,4 +1,4 @@
-#Web Chat Application 
+# Web Chat Application 
 
 Chat Web is a realtime web chat application where you can: 
 * login and register
@@ -14,10 +14,10 @@ Previous requirements
 * php7.2
 * curl-php
 
-##Quick Start 
+## Quick Start 
 For using the demo application you can go to [DEMO](http://flavioaandres.com/webchat)
 
-###Back-end Installation 
+### Back-end Installation 
 
 First, clone this repository 
 
@@ -52,14 +52,14 @@ now, run the migrations for create the tables on database with
 php artisan migrate
 ```
 
-##¡Ready!
+## ¡Ready!
 
 if you aren't running this project on server's folder, use the php server with: 
 ```
 php artisan serve
 ```
 
-##Front-end Installation
+## Front-end Installation
 
 First, clone the repositiory
 ```
@@ -71,10 +71,10 @@ When the process has been end, change in apis/host.js  file the API HOST where t
 Now, run this command for start development server and run frontend 
     npm start
 
-##Ussage
-###Create a new Chat:  
+## Ussage
+### Create a new Chat:  
 for start a conversation click to + button located to right-side and choose a user for create a new conversation with him 
-###Create a new Group: 
+### Create a new Group: 
 for start a new group click to + button for desplagate users list, Click to  Gorup Button and, choose all user you want. 
 For finish to choose users and start group click to OK Button 
  
