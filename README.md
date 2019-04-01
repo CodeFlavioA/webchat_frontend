@@ -1,68 +1,80 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#Web Chat Application 
 
-## Available Scripts
+Chat Web is a realtime web chat application where you can: 
+* login and register
+* List/Search users
+* List/Search Chats
+* Start a conversation with a user
+* Create a Group 
+* Chat with group
+* Change name to Group 
+* Upload Profile Photo 
 
-In the project directory, you can run:
+Previous requirements
+* php7.2
+* curl-php
 
-### `npm start`
+##Quick Start 
+For using the demo application you can go to [DEMO](http://flavioaandres.com/webchat)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+###Back-end Installation 
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+First, clone this repository 
 
-### `npm test`
+```
+git clone https://github.com/codeFlavioA/webchat_backend
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+Move to project folder and run command: 
+```
+composer install 
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Now, config your .env file with your database connection settings 
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=name_database
+DB_USERNAME=user_db
+DB_PASSWORD=password_db
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Too, for the realtime notifications is necesary create a project on Pusher (http://linktopusher.com)
+When u have  a Pusher account, type to .env file: 
 
-### `npm run eject`
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+now, run the migrations for create the tables on database with
+```
+php artisan migrate
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+##¡Ready!
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+if you aren't running this project on server's folder, use the php server with: 
+```
+php artisan serve
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+##Front-end Installation
 
-## Learn More
+First, clone the repositiory
+```
+git clone https://github.com/codeFlavioA/webchat
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+When the process has been end, change in apis/host.js  file the API HOST where the frontend application will request the data.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Now, run this command for start development server and run frontend 
+    npm start
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+##Ussage
+###Create a new Chat:  
+for start a conversation click to + button located to right-side and choose a user for create a new conversation with him 
+###Create a new Group: 
+for start a new group click to + button for desplagate users list, Click to  Gorup Button and, choose all user you want. 
+For finish to choose users and start group click to OK Button 
+ 
