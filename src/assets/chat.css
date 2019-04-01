@@ -125,6 +125,7 @@ body{
     display: grid; 
     grid-template-columns: 1fr 220px; 
     grid-template-areas: "info buttons";
+    min-width: 400px;
     max-width: 500px; 
 }
 .header-text{
@@ -148,6 +149,9 @@ body{
 }
 .header-message-side h4,p,h5{
     margin:0px; 
+}
+.header-message-side h5{
+    width: 90%; 
 }
 .container-messages{
     box-sizing: border-box;
@@ -375,3 +379,38 @@ body{
     font-size: 20px; 
     text-align: center; 
 }
+.buttons-actions-group{
+    grid-area: buttons; 
+    height: 100%;
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-end; 
+    margin: 0px 20px; 
+}
+.button-edit-name{
+    z-index: 5;
+}
+.button-edit-name button{
+    border-radius: 100%; 
+    float: right; 
+    padding: 7px;
+    color:white;
+    font-size: 18px; 
+    background: rgb(1, 56, 100);
+    border: 3px solid rgb(7, 56, 102); 
+}
+
+.input-edit-name{
+    position: relative; 
+}
+
+.input-edit-name input{
+    box-shadow: 0px 0px 1px 1px rgb(9, 55, 92); 
+    width: 120px;
+    border: 3px solid rgb(1, 56, 100); 
+    border-radius: 5px; 
+    padding: 7px 15px;
+    margin-left: -12px;
+    z-index: 10;
+}
+

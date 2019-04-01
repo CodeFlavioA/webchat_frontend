@@ -13,8 +13,10 @@ class MessageSide extends Component{
         super(props); 
         this.refDivChat = createRef()
         this.newMessage = createRef(); 
+        this.newName = createRef(); 
         this.state = {
-            chatName: ''
+            chatName: '',
+            is_editing:false, 
         }
     }
     
@@ -41,6 +43,38 @@ class MessageSide extends Component{
         let message = (this.newMessage.current.value); 
         this.sendMessage(this.props.chatActive,message,this.props.token); 
         this.newMessage.current.value = ''; 
+    }
+
+    editButton = (evt) =>{
+     if(!this.state.is_editing){
+         this.setState({
+             is_editing: true,
+         })
+     }else{
+
+        //this click have to send to backend new name 
+        let Form = new FormData(); 
+
+        Form.append('token', this.props.token)
+        Form.append('id_header', this.props.chatActive)
+        Form.append('title',this.newName.current.value)
+
+        Axios.post(HOST + '/api/chat/headers/group/title/', Form).then(r=>r)
+        .then(json=>{
+            let data = json.data; 
+            if(data.success){
+                let toReduce = {
+                    type: 'UPDATE_HEADER', 
+                    payload: data.data, 
+                }
+                this.props.dispatch(toReduce); 
+            }
+        })
+
+        this.setState({
+            is_editing:false, 
+        })
+     }
     }
 
     render(){
@@ -76,13 +110,16 @@ class MessageSide extends Component{
                 </div>
             </div>
         )
+
         return(
             <div  className="container-chat-conversacion">
                 <Header
-                name={name}
-                users={this.props.users}
-                members = {members} 
-                group = {group}
+                name={name} // Name or title 
+                group = {group} //if is group
+                members = {members} //Members Group
+                refName = {this.newName} 
+                editing = {this.state.is_editing} 
+                onEdit = {this.editButton} //Action 
                 />
                 <div ref={this.refDivChat} className="container-messages">
                    {this.props.chatActive === 0 ? selectChat:Messages}

@@ -14,6 +14,22 @@ function reducer (state,action){
                 user: user
             }
         }
+
+        case 'UPDATE_HEADER':{
+            let pos; 
+            state.headers.map((item,i)=>{
+                if(item.id_header === action.payload.id_header){
+                    pos = i; 
+                }
+            });
+            let headers = state.headers; 
+            headers.splice(pos,1,action.payload); 
+            let newHeaders = [...headers]; 
+            return {
+                ...state, 
+                headers: newHeaders, 
+            }
+        }
         case 'AVATAR_UPDATE':{
             let user = {
                 ...state.user, 

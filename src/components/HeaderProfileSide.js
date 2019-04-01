@@ -5,7 +5,7 @@ const HeaderProfileList = (props)=>{
     return(
         <div className="header-profile-list">
             <div className="big-img-profile">
-                <img src={props.avatar} alt="" srcset=""/>
+                <img src={props.avatar} alt="" />
                 <div className="input-profile-file">
                 <label htmlFor="newProfilePicture">+</label>
                     <input type="file" accept="image/*" name="newPhotos" onChange={props.FileUploaded} id="newProfilePicture"/>
@@ -13,7 +13,6 @@ const HeaderProfileList = (props)=>{
             </div>
             <div className="fullname-text">
                 <h4>{props.name} </h4>
-                <p>Status: This is my status</p>
             </div>
         </div>
     );

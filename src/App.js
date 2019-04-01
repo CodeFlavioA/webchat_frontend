@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ChatApp from './containers/ChatApp'
 import UsersSide from './containers/usersSide'
 import MessageSide from './containers/MessagesSide'
-import Profile from './containers/ProfileConteiner'
+import Profile from './containers/ProfileContainer'
 import LoginComponent from './components/loginComponent'; 
 import { connect } from 'react-redux';
 import './assets/chat.css'

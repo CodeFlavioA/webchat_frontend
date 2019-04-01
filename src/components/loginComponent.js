@@ -18,11 +18,11 @@ const LoginComponent = (props)=>{
         <form action="" method="post" >
         <div className="email-input">
             <label htmlFor="">Email</label><br></br>
-            <input type="text" ref={(input)=>(emailRef = input)} name="" placeholder='Ingresa tu Email' id=""/>
+            <input type="text" ref={(input)=>(emailRef = input)} name="email" placeholder='Ingresa tu Email' id=""/>
         </div>
         <div className="password-input">
         <label htmlFor="">Password: </label><br></br>
-            <input type="password" ref={(input)=>(passwordRef = input)} name="" placeholder='Password' id=""/>
+            <input type="password" ref={(input)=>(passwordRef = input)} name="password" placeholder='Password' id=""/>
         </div>
         <div className="submit-button">
             <input type="button" value="Iniciar sesion" onClick={handleLogin} />
@@ -33,21 +33,35 @@ const LoginComponent = (props)=>{
         <form action="" method="post" >
             <div className="name-input">
                 <label htmlFor="">Name</label><br></br>
-                <input type="text" ref={(input)=>(nameRef = input)} name="" placeholder='Ingresa tu Email' id=""/>
+                <input type="text" ref={(input)=>(nameRef = input)} name="name" placeholder='Ingresa tu Email' id=""/>
             </div>
             <div className="email-input">
                 <label htmlFor="">Email</label><br></br>
-                <input type="text" ref={(input)=>(emailRef = input)} name="" placeholder='Ingresa tu Email' id=""/>
+                <input type="text" ref={(input)=>(emailRef = input)} name="email" placeholder='Ingresa tu Email' id=""/>
             </div>
             <div className="password-input">
             <label htmlFor="">Password: </label><br></br>
-                <input type="password" ref={(input)=>(passwordRef = input)} name="" placeholder='Password' id=""/>
+                <input type="password" ref={(input)=>(passwordRef = input)} name="password" placeholder='Password' id=""/>
             </div>
             <div className="submit-button">
-                <input type="button" value={props.toggle ?'Iniciar':'Registrarse'} onClick= { handleRegister} />
+                <input type="button" value={'Sign Up'} onClick= { handleRegister} />
             </div>
         </form>
     );
+    let invitateReg = (
+        <div>
+            You don't have a account? 
+            <br/>
+            Sign Up Here
+        </div>
+    );
+    let invitateSignin = (
+        <div>
+            Do you have an account?
+            <br/>
+            Sign In Here
+        </div>
+    )
 
     return(
         <div className="login-box">
@@ -60,9 +74,7 @@ const LoginComponent = (props)=>{
               {props.toggle ? loginForm:registerForm}
             </div>
             <div className="info" onClick={props.registerClick}>
-                ¿No tienes cuenta? 
-                <br/>
-                Registrate aquí
+                {props.toggle ? invitateReg:invitateSignin}
             </div>
         </div>
     );

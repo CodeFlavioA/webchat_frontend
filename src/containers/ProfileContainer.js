@@ -7,6 +7,12 @@ import Axios from 'axios';
 import HOST from '../apis/host'
 
 class ProfileContainer extends React.Component{
+
+    constructor(props){
+        super(props)
+       
+    }
+
     clickToButton = (evt) => {
         evt.preventDefault(); 
         this.props.dispatch({
