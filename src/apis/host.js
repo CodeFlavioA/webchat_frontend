@@ -1,2 +1,2 @@
-let DOMAIN_API = 'http://localhost:8000'; 
+let DOMAIN_API = 'http://flavioaandres.com/webchat/public'; 
 export default DOMAIN_API;

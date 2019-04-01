@@ -5,6 +5,7 @@ import MessageSide from './containers/MessagesSide'
 import Profile from './containers/ProfileContainer'
 import LoginComponent from './components/loginComponent'; 
 import { connect } from 'react-redux';
+import HOST from './apis/host'
 import './assets/chat.css'
 import './App.css';
 import axios from 'axios'; 
@@ -38,7 +39,7 @@ class App extends Component {
     Form.append('email',email); 
     Form.append('password',pass); 
 
-    axios.post('http://127.0.0.1:8000/api/user/reg',Form).then(r=>r)
+    axios.post(HOST + '/api/user/reg',Form).then(r=>r)
     .then(json=>{
       if(json.data.success){
         let user = {
@@ -67,7 +68,7 @@ class App extends Component {
     form.append('email', email); 
     form.append('password',password); 
 
-    axios.post('http://127.0.0.1:8000/api/user/login',form)
+    axios.post(HOST + '/api/user/login',form)
           .then(result =>result).then((json)=>{
             if(json.data.success){
               let user = {
