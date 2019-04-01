@@ -30,7 +30,7 @@ class NewChatComponent extends Component{
         let Form = new FormData(); 
         Form.append('token',token); 
         Form.append('idUserToTalk',id); 
-        Axios.post(HOST + '/api/chat/create/',Form)
+        Axios.post(HOST + '/api/chat/create',Form)
         .then(r=>r).then(json=>{
             this.props.dispatch({
                 type:'ADD_NEW_HEADER',

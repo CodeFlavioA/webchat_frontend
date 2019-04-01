@@ -2,6 +2,7 @@
   "name": "webchat",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://flavioaandres/webchat/",
   "dependencies": {
     "axios": "^0.18.0",
     "pusher-js": "^4.4.0",

@@ -27,7 +27,7 @@ class MessageSide extends Component{
         form.append('idChatHeader',id_header)
         form.append('plainMessage',message)
 
-        Axios.post(HOST + '/api/chat/message/send/',form).then(result=>result)
+        Axios.post(HOST + '/api/chat/message/send',form).then(result=>result)
         .then((json)=>{
             if(json.data.success){
                 this.props.dispatch({
@@ -59,7 +59,7 @@ class MessageSide extends Component{
         Form.append('id_header', this.props.chatActive)
         Form.append('title',this.newName.current.value)
 
-        Axios.post(HOST + '/api/chat/headers/group/title/', Form).then(r=>r)
+        Axios.post(HOST + '/api/chat/headers/group/title', Form).then(r=>r)
         .then(json=>{
             let data = json.data; 
             if(data.success){

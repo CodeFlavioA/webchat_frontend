@@ -62,7 +62,7 @@ class ChatContainer extends Component {
         let form = new FormData(); 
         form.append('token',token); 
         form.append('id_header',header); 
-        Axios.post(HOST + '/api/chat/user/header/',form).then(r=>r)
+        Axios.post(HOST + '/api/chat/user/header',form).then(r=>r)
         .then((json)=>{
             if(json.data.success){
                 this.props.dispatch({
@@ -80,7 +80,7 @@ class ChatContainer extends Component {
         let form = new FormData(); 
         form.append('token', token); 
     
-        Axios.post(HOST + '/api/chat/headers/', form)
+        Axios.post(HOST + '/api/chat/headers', form)
         .then((response)=>{
             return response; 
         }).then((json)=>{
